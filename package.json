@@ -1,0 +1,63 @@
+{
+  "name": "@danmat/query-cache",
+  "version": "0.1.0",
+  "description": "RFC 10008-correct caching for the HTTP QUERY method: cache keys derived from the request body, plus a tiny in-memory cache. Zero dependencies.",
+  "keywords": [
+    "http",
+    "query",
+    "query-method",
+    "rfc10008",
+    "rfc-10008",
+    "cache",
+    "cache-key",
+    "caching",
+    "fetch",
+    "sha-256"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "author": "Dan Matthew <dannymatthew@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanMat/query-cache.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DanMat/query-cache/issues"
+  },
+  "homepage": "https://github.com/DanMat/query-cache#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.8",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
