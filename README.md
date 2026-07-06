@@ -76,10 +76,12 @@ Constructor options extend the key options above plus `maxEntries`, `ttl` (ms), 
 - **Hashing** uses the Web Crypto `SubtleCrypto.digest` global, with a `node:crypto` fallback for older Node — no dependencies either way.
 - **Determinism:** identical bytes hash identically. `FormData` bodies aren't recommended as cache inputs — their multipart boundary is randomized, so they won't produce stable keys. Prefer JSON/text/SQL payloads (which QUERY is designed for), or supply `normalizeBody`.
 
-## Related
+## The `@danmat` QUERY suite
 
-- [`@danmat/query-fetch`](https://github.com/DanMat/query-fetch) — a tiny client for the HTTP QUERY method.
+- [`@danmat/query-fetch`](https://github.com/DanMat/query-fetch) — client for the QUERY method.
 - [`@danmat/accept-query`](https://github.com/DanMat/accept-query) — parse/build/negotiate the `Accept-Query` header.
+- **`@danmat/query-cache`** — body-aware response caching *(you are here)*.
+- [`@danmat/query-server`](https://github.com/DanMat/query-server) — server-side request validation & negotiation.
 
 ## License
 
