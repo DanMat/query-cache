@@ -78,7 +78,8 @@ async function bodyToBytes(body: BodyInit | null | undefined): Promise<{
   bytes: Uint8Array;
   derivedContentType: string | null;
 }> {
-  if (body == null) return { bytes: new Uint8Array(0), derivedContentType: null };
+  if (body == null)
+    return { bytes: new Uint8Array(0), derivedContentType: null };
   // POST always permits a body, so this works regardless of the real method.
   const probe = new Request("http://query-cache.invalid/", {
     method: "POST",
@@ -153,10 +154,13 @@ export async function queryCacheKey(
   }
   varyLines.sort();
 
-  const preamble = [method, url, `content-type: ${contentType ?? ""}`, ...varyLines].join(
-    "\n",
-  );
-  const data = concat(new TextEncoder().encode(preamble + "\n\n"), body);
+  const preamble = [
+    method,
+    url,
+    `content-type: ${contentType ?? ""}`,
+    ...varyLines,
+  ].join("\n");
+  const data = concat(new TextEncoder().encode(`${preamble}\n\n`), body);
 
   const subtle = await getSubtle();
   const digest = await subtle.digest("SHA-256", data);
@@ -245,10 +249,11 @@ export class QueryCache {
     const { noStore, maxAge } = parseCacheControl(response);
     if (noStore) return;
 
-    const lifetime =
-      maxAge !== undefined ? maxAge * 1000 : this.#options.ttl;
+    const lifetime = maxAge !== undefined ? maxAge * 1000 : this.#options.ttl;
     const expires =
-      lifetime !== undefined ? this.#now() + lifetime : Number.POSITIVE_INFINITY;
+      lifetime !== undefined
+        ? this.#now() + lifetime
+        : Number.POSITIVE_INFINITY;
 
     const key = await this.key(input);
     this.#store.delete(key);

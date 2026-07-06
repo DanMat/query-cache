@@ -1,5 +1,5 @@
-import { describe, it, expect, vi } from "vitest";
-import { queryCacheKey, QueryCache } from "../src/index.js";
+import { describe, expect, it, vi } from "vitest";
+import { QueryCache, queryCacheKey } from "../src/index.js";
 
 const json = (value: unknown) => ({
   url: "https://api.test/search",

@@ -1,6 +1,6 @@
 {
   "name": "@danmat/query-cache",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "RFC 10008-correct caching for the HTTP QUERY method: cache keys derived from the request body, plus a tiny in-memory cache. Zero dependencies.",
   "keywords": [
     "http",
@@ -39,7 +39,10 @@
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lint": "biome check .",
+    "format": "biome check --write .",
+    "prepare": "husky"
   },
   "author": "Dan Matthew <dannymatthew@gmail.com>",
   "license": "MIT",
@@ -55,9 +58,15 @@
     "access": "public"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.2",
     "@vitest/coverage-v8": "^2.1.8",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
+  },
+  "lint-staged": {
+    "*.{ts,js,json,jsonc,md}": "biome check --write --no-errors-on-unmatched"
   }
 }
