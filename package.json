@@ -1,6 +1,6 @@
 {
   "name": "@danmat/query-cache",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "RFC 10008-correct caching for the HTTP QUERY method: cache keys derived from the request body, plus a tiny in-memory cache. Zero dependencies.",
   "keywords": [
     "http",
